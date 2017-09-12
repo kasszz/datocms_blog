@@ -1,0 +1,34 @@
+{
+  "name": "datocms-blog",
+  "description": "A static blog website with DatoCMS and rendered with Nunjucks.",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "predata": "rimraf ./data/",
+    "data": "dato dump; node dato.config.js",
+    "prebuild": "rimraf ./dist/",
+    "build": "node ./tasks/build-html.js",
+    "start": "http-server 'build/' -c-1 -o -p 3000",
+    "watch": "chokidar 'dato.config.js' 'build.js' 'lib/**' 'src/**' -c 'node ./build.js'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chalk": "2.1.0",
+    "chokidar-cli": "1.2.0",
+    "datocms-client": "0.3.27",
+    "glob": "7.1.2",
+    "http-server": "0.10.0",
+    "mkdirp": "0.5.1",
+    "nunjucks": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasszz/datocms_blog.git"
+  },
+  "author": "Casper Boutens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kasszz/datocms_blog/issues"
+  },
+  "homepage": "https://github.com/kasszz/datocms_blog#readme"
+}
