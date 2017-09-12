@@ -7,9 +7,10 @@ const mkdirp = require('mkdirp');
 
 const dataFolder = 'data';
 const distFolder = 'dist';
+const viewFolder = 'views';
 const jsonSelector = '/**/*.json';
 
-nunjucks.configure('src/views');
+nunjucks.configure('src');
 
 glob(path.join(dataFolder, jsonSelector), (err, filePaths) => {
   if (err) console.log(chalk.red(err));
@@ -61,7 +62,7 @@ function generateHtml(filePathObj) {
       templateName = filePathObj.name;
     }
 
-    nunjucks.render(`${templateName}.html`, (err, html) => {
+    nunjucks.render(path.join(viewFolder, `${templateName}.html`), filePathObj.data, (err, html) => {
       if (err) reject(err);
       filePathObj.html = html;
 
